@@ -1,63 +1,41 @@
-﻿.green, .green a {
-    color: #339900;
-}
-
-
+﻿
 body {
     background-color: #111;
     color: white;
 }
 
-
-.col-md-12 {
-    padding: 120px;
+main {
+    overflow: hidden;
 }
 
-.mag {
-    width: 450px;
-    margin: 0 auto;
-    float: none;
+.img-container {
+    width: 45%;
+    float: left;
+    margin: 20px;
 }
 
-    .mag img {
+    .img-container img {
         max-width: 100%;
+        display: block;
     }
 
-
-.mag1 {
-    width: 120px;
-    margin: 0 auto;
-    float: none;
-}
-
-    .mag1 img {
-        max-width: 100%;
-    }
-
-.mag2 {
-    width: 900px;
-    margin: 0 auto;
-    float: none;
-}
-
-    .mag2 img {
-        max-width: 100%;
-    }
-
-.magnify {
+/*.under-loupe {
     position: relative;
-    cursor: none;
+    cursor: crosshair;
+    overflow: hidden;
 }
 
-.magnify-large {
+.loupe {
     position: absolute;
     display: none;
-    width: 500px;
-    height: 500px;
-    -webkit-box-shadow: 0 0 0 7px rgba(255, 255, 255, 0.55), 0 0 7px 7px rgba(0, 0, 0, 0.25), inset 0 0 40px 2px rgba(0, 0, 0, 0.25);
-    -moz-box-shadow: 0 0 0 7px rgba(255, 255, 255, 0.55), 0 0 7px 7px rgba(0, 0, 0, 0.25), inset 0 0 40px 2px rgba(0, 0, 0, 0.25);
-    box-shadow: 0 0 0 7px rgba(255, 255, 255, 0.55), 0 0 7px 7px rgba(0, 0, 0, 0.25), inset 0 0 40px 2px rgba(0, 0, 0, 0.25);
-    -webkit-border-radius: 100%;
-    -moz-border-radius: 100%;
-    border-radius: 100%;
-}
+    width: 200px;
+    height: 200px;
+    -webkit-box-shadow: 0 0 0 2000px #ffffff, 0 0 7px 7px #000000, inset 0 0 40px 2px #000000;
+    -moz-box-shadow: 0 0 0 2000px #ffffff, 0 0 7px 7px #000000, inset 0 0 40px 2px #000000;
+    -moz-box-shadow: 0 0 0 2000px rgba(255, 255, 255, 0.55), 0 0 7px 7px rgba(0, 0, 0, 0.25), inset 0 0 40px 2px rgba(0, 0, 0, 0.10);
+    box-shadow: 0 0 0 2000px #ffffff, 0 0 7px 7px #000000, inset 0 0 40px 2px #000000;
+    box-shadow: 0 0 0 2000px rgba(255, 255, 255, 0.55), 0 0 7px 7px rgba(0, 0, 0, 0.25), inset 0 0 40px 2px rgba(0, 0, 0, 0.10);
+    -webkit-border-radius: 40%;
+    -moz-border-radius: 40%;
+    border-radius: 40%;
+}*/

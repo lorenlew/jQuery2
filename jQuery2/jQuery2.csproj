@@ -57,6 +57,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\Untitled.png" />
+    <Content Include="Images\Untitled2.png" />
     <Content Include="index.html" />
     <Content Include="packages.config" />
     <None Include="Scripts\jquery-1.11.1.intellisense.js" />
@@ -64,6 +66,7 @@
     <Content Include="Scripts\jquery-1.11.1.min.js" />
     <Content Include="Scripts\jquery.zoom-image.js" />
     <None Include="Scripts\_references.js" />
+    <Content Include="Scripts\Zoom-images.js" />
     <Content Include="Styles\Site.css" />
     <Content Include="Web.config" />
   </ItemGroup>
