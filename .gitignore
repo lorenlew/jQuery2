@@ -154,3 +154,15 @@ $RECYCLE.BIN/
 
 # Mac desktop service store files
 .DS_Store
+jQuery2/Scripts/jquery-1.11.1.intellisense.js
+jQuery2/Scripts/jquery-1.11.1.min.map
+jQuery2/Scripts/_references.js
+jQuery2/Scripts/jquery-1.11.1.min.js
+packages/jQuery.1.11.1/Content/Scripts/jquery-1.11.1-vsdoc.js
+packages/jQuery.1.11.1/Content/Scripts/jquery-1.11.1.min.js
+packages/jQuery.1.11.1/Content/Scripts/jquery-1.11.1.min.map
+packages/jQuery.1.11.1/jQuery.1.11.1.nupkg
+packages/jQuery.1.11.1/Tools/common.ps1
+packages/jQuery.1.11.1/Tools/install.ps1
+packages/jQuery.1.11.1/Tools/jquery-1.11.1.intellisense.js
+packages/jQuery.1.11.1/Tools/uninstall.ps1
