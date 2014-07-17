@@ -5,11 +5,13 @@ body {
 }
 
 main {
+    width: 1170px;
+    margin: 0 auto;
     overflow: hidden;
 }
 
 .img-container {
-    width: 45%;
+    width: 500px;
     float: left;
     margin: 20px;
 }
@@ -19,7 +21,7 @@ main {
         display: block;
     }
 
-/*.under-loupe {
+.under-loupe {
     position: relative;
     cursor: crosshair;
     overflow: hidden;
@@ -38,4 +40,4 @@ main {
     -webkit-border-radius: 40%;
     -moz-border-radius: 40%;
     border-radius: 40%;
-}*/
+}

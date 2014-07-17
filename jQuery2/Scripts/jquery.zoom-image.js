@@ -8,89 +8,106 @@
         jQuery('head').append(cssLink);
     })();
 
-    var LoupeView = function (element, options) {
-        var type = 'loupeView';
-        this.init(type, element, options);
-    };
+    function Loupe(element, options) {
+        var self = this;
+        var nativeWidth = null;
+        var nativeHeight = null;
+        var $element = $(element);
 
-    LoupeView.prototype = {
-        constructor: LoupeView,
-        init: function (type, element, options) {
-            var eventOn = 'mousemove';
-            var eventOut = 'mouseleave';
-
-            this.type = type;
-            this.$element = $(element);
-            this.options = this.getOptions(options);
-            this.nativeWidth = 0;
-            this.nativeHeight = 0;
-
-            this.$element.wrap('<div class="under-loupe">');
-            this.$element.parent('.under-loupe').append('<div class="loupe">');
-            this.$element.siblings('.loupe').css('background', 'url(\'' + this.$element.attr('src') + '\') no-repeat');
-
-            this.$element.parent('.under-loupe').on(eventOn + '.' + this.type, $.proxy(this.check, this));
-            this.$element.parent('.under-loupe').on(eventOut + '.' + this.type, $.proxy(this.check, this));
-        },
-        getOptions: function (options) {
-            options = $.extend({}, $.fn[this.type].defaults, options);
-
+        function initSettings() {
             if (options.delay && typeof options.delay === 'number') {
                 options.delay = {
                     show: options.delay,
                     hide: options.delay
                 };
             }
-            return options;
-        },
-        check: function (e) {
+            if (options.scale && typeof options.scale === 'number') {
+                options.scale = options.scale;
+            }
+            self.options = $.extend({}, $.fn.loupeView.defaults, options);
+        }
+
+        function init() {
+            var eventOn = 'mousemove';
+            var eventOut = 'mouseleave';
+
+            nativeWidth = 0;
+            nativeHeight = 0;
+
+            $element.wrap('<div class="under-loupe">');
+            $element
+                .parent('.under-loupe')
+                .append('<div class="loupe">');
+            $element
+                .siblings('.loupe')
+                .css({
+                    background: 'url(\'' + $element.attr('src') + '\') no-repeat',
+                    transform: 'scale(' + self.options.scale + ')'
+                });
+
+            $element
+                .parent('.under-loupe')
+                .on(eventOn, positionLoupe)
+                .on(eventOut, positionLoupe);
+        }
+
+        function positionLoupe(e) {
             var container = $(e.currentTarget);
-            var self = container.children('img');
-            var loupe = container.children('.loupe');
+            var $image = container.children('img');
+            var $loupe = container.children('.loupe');
 
-            if (!this.nativeWidth && !this.nativeHeight) {
+            if (!nativeWidth && !nativeHeight) {
                 var image = new Image();
-                image.src = self.attr('src');
-
-                this.nativeWidth = image.width;
-                this.nativeHeight = image.height;
-
+                image.src = $image.attr('src');
+                nativeWidth = image.width;
+                nativeHeight = image.height;
             } else {
-
                 var loupeViewOffset = container.offset();
                 var loupeXCoordinate = e.pageX - loupeViewOffset.left;
                 var loupeYCoordinate = e.pageY - loupeViewOffset.top;
 
-                if (loupeXCoordinate < container.width() && loupeYCoordinate < container.height() && loupeXCoordinate > 0 && loupeYCoordinate > 0) {
-                    loupe.fadeIn(this.options.delay.show);
+                if (loupeXCoordinate < container.width() &&
+                    loupeYCoordinate < container.height() &&
+                    loupeXCoordinate > 0 &&
+                    loupeYCoordinate > 0) {
+
+                    $loupe.fadeIn(self.options.delay.show);
                 } else {
-                    loupe.fadeOut(this.options.delay.show);
+                    $loupe.fadeOut(self.options.delay.show);
                 }
+                if ($loupe.is(':visible')) {
+                    var innerPositionX =
+                        Math.round(loupeXCoordinate / container.width() * nativeWidth - $loupe.width() / 2) * -1;
+                    var innerPositionY =
+                        Math.round(loupeYCoordinate / container.height() * nativeHeight - $loupe.height() / 2) * -1;
 
-                if (loupe.is(':visible')) {
-                    var innerXPosition = Math.round(loupeXCoordinate / container.width() * this.nativeWidth - loupe.width() / 2) * -1;
-                    var innerYposition = Math.round(loupeYCoordinate / container.height() * this.nativeHeight - loupe.height() / 2) * -1;
-                    var backgroundPosition = innerXPosition + 'px ' + innerYposition + 'px';
+                    var backgroundPosition = innerPositionX + 'px ' + innerPositionY + 'px';
+                    var offsetLeft = loupeXCoordinate - $loupe.width() / 2;
+                    var offsetTop = loupeYCoordinate - $loupe.height() / 2;
 
-                    var offsetLeft = loupeXCoordinate - loupe.width() / 2;
-                    var offsetTop = loupeYCoordinate - loupe.height() / 2;
-
-                    loupe.css({ left: offsetLeft, top: offsetTop, backgroundPosition: backgroundPosition });
+                    $loupe
+                        .css({
+                            left: offsetLeft,
+                            top: offsetTop,
+                            backgroundPosition: backgroundPosition
+                        });
                 }
             }
         }
-    };
+
+        initSettings();
+        init();
+    }
 
     $.fn.loupeView = function (option) {
         return this.each(function () {
-            var loupItem = new LoupeView(this, option);
+            return new Loupe(this, option);
         });
     };
 
-    $.fn.loupeView.constructor = LoupeView;
-
     $.fn.loupeView.defaults = {
-        delay: 0
+        delay: 0,
+        scale: 1
     };
 
 })(jQuery);
